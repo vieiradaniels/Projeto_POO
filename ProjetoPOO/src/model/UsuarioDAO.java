@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class UsuarioDAO {
 
     public boolean autenticar(String email, String senha) {
-        String sql = "SELECT * FROM tbusuario" + "WHERE email = ? and senha = md5(?" + "and ativo = true";
+        String sql = "SELECT * FROM tbusuario WHERE email = ? and senha = ? and ativo = true";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
