@@ -38,6 +38,7 @@ public class FRMenu extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -63,6 +64,11 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu1.setText("Cadastro");
 
         MICadUsuario.setText("Usuário");
+        MICadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MICadUsuarioActionPerformed(evt);
+            }
+        });
         jMenu1.add(MICadUsuario);
 
         jMenuItem1.setText("?????");
@@ -109,6 +115,10 @@ public class FRMenu extends javax.swing.JFrame {
     private void MISairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MISairActionPerformed
         this.dispose();
     }//GEN-LAST:event_MISairActionPerformed
+
+    private void MICadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MICadUsuarioActionPerformed
+        new FRCadUsuario(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_MICadUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

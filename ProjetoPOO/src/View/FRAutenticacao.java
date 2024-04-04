@@ -38,6 +38,7 @@ public class FRAutenticacao extends javax.swing.JFrame {
         btnEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Autenticação");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lock_closed.png"))); // NOI18N
