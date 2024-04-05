@@ -2,6 +2,10 @@ package utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class Utils {
     public static String calcularMD5(String senha) {
@@ -27,6 +31,21 @@ public class Utils {
         }
         
         return hashMD5;
+    }
+    
+    public static Date converterStingToDate(String texto){
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date data = null;
+        
+        try {
+            data = formato.parse(texto);
+            formato.parse(texto);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, 
+                    "Erro ao converter a data");
+        }
+        
+        return data;
     }
  
 }

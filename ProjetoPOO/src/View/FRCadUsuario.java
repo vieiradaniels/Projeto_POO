@@ -4,7 +4,11 @@
  */
 package View;
 
+import controller.UsuarioController;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import model.Usuario;
+import utils.Utils;
 
 /**
  *
@@ -198,53 +202,71 @@ public class FRCadUsuario extends javax.swing.JDialog {
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         //Verificar campos
-        if(verificaCampos() ==false){
+        if (verificaCampos() == false) {
             return;
         }
         //Salvar no banco de dados
+
+        Usuario usu = new Usuario();
+        usu.setNome(txtNome.getText());
+        usu.setEmail(txtEmail.getText());
+        
+        String senha = new String(txtSenha.getPassword());
+        senha = Utils.calcularMD5(senha);
+        usu.setSenha(senha);
+        usu.setAtivo(ckbAtivo.isSelected());
+
+        Date data = Utils.converterStingToDate(
+                txtDataNasc.getText());
+        usu.setDataNasc(data);
+        
+        UsuarioController controller = new UsuarioController();
+        if(controller.adicionarUsuario(usu)){
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSalvarMouseClicked
-    
-    private boolean verificaCampos(){
-        if(txtNome.getText().equals("")){
+
+    private boolean verificaCampos() {
+        if (txtNome.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo 'Nome' em branco");
             return false;
         }
-        
-        if(!txtNome.getText().matches("^[\\p{L} ]+$")){
+
+        if (!txtNome.getText().matches("^[\\p{L} ]+$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Nome' possui caracteres inválidos");
             return false;
         }
-        
-        if(txtEmail.getText().equals("")){
+
+        if (txtEmail.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo 'Email' em branco");
             return false;
         }
-        
-        if(!txtEmail.getText().matches("^[a-zA-Z._]+@[a-zA-Z._]+.[a-zA-Z._]+$")){
-            JOptionPane.showMessageDialog(null,"Campo 'Email' possui formato inválido");
+
+        if (!txtEmail.getText().matches("^[a-zA-Z._]+@[a-zA-Z._]+.[a-zA-Z._]+$")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Email' possui formato inválido");
             return false;
         }
-        
-        if(!txtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")){
+
+        if (!txtDataNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Data de Nascimento' possui formato inválido. Ex:01/01/2000");
             return false;
         }
-        
+
         String senha = new String(txtSenha.getPassword());
-        
-        if(senha.length() <8){
+
+        if (senha.length() < 8) {
             JOptionPane.showMessageDialog(null, "Campo 'Senha' deve ser maior que 8 caracteres");
             return false;
         }
-        
-        if(!senha.equals(new String(txtConfSenha.getPassword()))){
-            JOptionPane.showMessageDialog(null,"As senhas não são iguais");
+
+        if (!senha.equals(new String(txtConfSenha.getPassword()))) {
+            JOptionPane.showMessageDialog(null, "As senhas não são iguais");
             return false;
         }
-        
+
         return true;
     }
-    
+
     /**
      * @param args the command line arguments
      */
