@@ -2,6 +2,7 @@ package controller;
 
 import model.UsuarioDAO;
 import javax.swing.JOptionPane;
+import model.Usuario;
 
 public class UsuarioController {
 
@@ -16,6 +17,15 @@ public class UsuarioController {
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha incorreta");
+            return false;
+        }
+    }
+    
+    public boolean adicionarUsuario(Usuario u){
+        if(usuarioDAO.adicionarUsuario(u)){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário não cadastrado");
             return false;
         }
     }
