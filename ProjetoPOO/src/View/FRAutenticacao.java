@@ -5,6 +5,7 @@
 package View;
 
 import controller.UsuarioController;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import utils.Utils;
 
@@ -50,16 +51,16 @@ public class FRAutenticacao extends javax.swing.JFrame {
         jLabel3.setText("Senha");
 
         txtEmail.setName("txtEmail"); // NOI18N
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEmailKeyPressed(evt);
             }
         });
 
         txtSenha.setName("txtSenha"); // NOI18N
-        txtSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaActionPerformed(evt);
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
             }
         });
 
@@ -70,11 +71,6 @@ public class FRAutenticacao extends javax.swing.JFrame {
         btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEntrarMouseClicked(evt);
-            }
-        });
-        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrarActionPerformed(evt);
             }
         });
 
@@ -121,13 +117,24 @@ public class FRAutenticacao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
-
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
-        // TODO add your handling code here:
+        logar();
+        
+    }//GEN-LAST:event_btnEntrarMouseClicked
+       
 
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           logar();
+       }
+    }//GEN-LAST:event_txtSenhaKeyPressed
+
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
+       if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           txtSenha.requestFocus();
+       }
+    }//GEN-LAST:event_txtEmailKeyPressed
+    private void logar(){
         if (txtEmail.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo 'Email' em branco");
             return;
@@ -147,17 +154,7 @@ public class FRAutenticacao extends javax.swing.JFrame {
             this.dispose();
             new FRMenu().setVisible(true);
         }
-    }//GEN-LAST:event_btnEntrarMouseClicked
-       
-
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEntrarActionPerformed
-
-    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
