@@ -19,6 +19,15 @@ import utils.Utils;
 public class FRUPDUsuario extends javax.swing.JDialog {
 
     private int pkUsuario;
+    private String senhaUsuario;
+
+    public String getSenhaUsuario() {
+        return senhaUsuario;
+    }
+
+    public void setSenhaUsuario(String senhaUsuario) {
+        this.senhaUsuario = senhaUsuario;
+    }
 
     public void setPkUsuario(int pk) {
         this.pkUsuario = pk;
@@ -371,12 +380,16 @@ public class FRUPDUsuario extends javax.swing.JDialog {
             txtSenha.setBackground(Color.white);
             txtConfSenha.setBackground(Color.white);
             btnAlterarSenha.setText("Cancelar alteração");
+            txtSenha.setText("");
+            txtConfSenha.setText("");
         } else {
             txtSenha.setEditable(false);
             txtConfSenha.setEditable(false);
             txtSenha.setBackground(Color.gray);
             txtConfSenha.setBackground(Color.gray);
             btnAlterarSenha.setText("Alterar Senha");
+            txtSenha.setText(getSenhaUsuario());
+            txtConfSenha.setText(getSenhaUsuario());
         }
     }//GEN-LAST:event_btnAlterarSenhaMouseClicked
 
@@ -433,6 +446,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
                 Utils.converterDateToString(usu.getDataNasc()));
         txtSenha.setText(usu.getSenha());
         txtConfSenha.setText(usu.getSenha());
+        setSenhaUsuario(usu.getSenha());
         ckbAtivo.setSelected(usu.isAtivo());
     }
 
