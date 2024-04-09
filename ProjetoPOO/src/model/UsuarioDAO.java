@@ -112,4 +112,36 @@ public class UsuarioDAO {
         }
         return usuarios;
     }
+    
+    public Usuario readForPk(long pk){
+        String sql = "SELECT * FROM tbusuario WHERE pkusuario = ?";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Usuario usuario = new Usuario();
+
+        try {
+            stmt = con.prepareStatement(sql);
+             stmt.setLong(1, pk);
+
+            rs = stmt.executeQuery();
+
+            if(rs.next()){
+                usuario.setPkUsuario(rs.getLong("pkusuario"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setDataNasc(rs.getDate("datanasc"));
+                usuario.setAtivo(rs.getBoolean("ativo"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        } finally {
+            gerenciador.closeConnection(stmt, rs);
+        }
+        return usuario;
+    }
 }
