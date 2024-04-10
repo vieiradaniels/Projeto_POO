@@ -91,6 +91,28 @@ public class UsuarioDAO {
         }
         return false;
     }
+    
+    public boolean removerUsuario(Usuario u, Long pk) {
+        String sql = "DELETE FROM TBUSUARIO WHERE pkusuario = ?";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement(sql);         
+            stmt.setLong(1, pk);
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuario removido com sucesso!");
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt);
+        }
+
+        return false;
+    }
 
     public List<Usuario> readForDesc(int tipo, String desc) {
         String sql = "SELECT * FROM tbusuario";
