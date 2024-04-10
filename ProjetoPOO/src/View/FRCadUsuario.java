@@ -241,7 +241,7 @@ public class FRCadUsuario extends javax.swing.JDialog {
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         //Verificar campos
-        if (verificaCampos() == false) {
+        if (verificarCampos() == false) {
             return;
         }
         //Salvar no banco de dados
@@ -307,7 +307,7 @@ public class FRCadUsuario extends javax.swing.JDialog {
        }
     }//GEN-LAST:event_btnSalvarKeyPressed
 
-    private boolean verificaCampos() {
+    private boolean verificarCampos() {
         if (txtNome.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo 'Nome' em branco");
             return false;

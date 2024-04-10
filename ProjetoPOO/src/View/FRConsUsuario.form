@@ -62,7 +62,7 @@
                       <Group type="102" attributes="0">
                           <Component id="btnAlterar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnReturn" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -104,7 +104,7 @@
                   <Component id="jScrollPane1" min="-2" pref="260" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnReturn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -210,10 +210,10 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtFiltro">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFiltroActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFiltroKeyPressed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnReturn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Black" size="12" style="0"/>
@@ -223,6 +223,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Voltar"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnReturnMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnAlterar">
           <Properties>

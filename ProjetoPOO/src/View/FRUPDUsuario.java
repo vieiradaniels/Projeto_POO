@@ -62,7 +62,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtConfSenha = new javax.swing.JPasswordField();
-        btnSalvar1 = new javax.swing.JButton();
+        btnRemover = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         btnAlterarSenha = new javax.swing.JButton();
@@ -159,17 +159,17 @@ public class FRUPDUsuario extends javax.swing.JDialog {
             }
         });
 
-        btnSalvar1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnSalvar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remover.png"))); // NOI18N
-        btnSalvar1.setText("Remover");
-        btnSalvar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRemover.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/remover.png"))); // NOI18N
+        btnRemover.setText("Remover");
+        btnRemover.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalvar1MouseClicked(evt);
+                btnRemoverMouseClicked(evt);
             }
         });
-        btnSalvar1.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnRemover.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnSalvar1KeyPressed(evt);
+                btnRemoverKeyPressed(evt);
             }
         });
 
@@ -195,7 +195,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
                 .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(btnSalvar)
                 .addGap(18, 18, 18)
-                .addComponent(btnSalvar1)
+                .addComponent(btnRemover)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelar)
                 .addGap(17, 17, 17))
@@ -265,7 +265,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnCancelar)
-                    .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
@@ -325,7 +325,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         //Verificar campos
-        if (verificaCampos() == false) {
+        if (verificarCampos() == false) {
             return;
         }
         //Salvar no banco de dados
@@ -392,35 +392,20 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_txtConfSenhaKeyPressed
 
-    private void btnSalvar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvar1MouseClicked
-        if (verificaCampos() == false) {
-            return;
-        }
-
-        // Salvar no banco de dados
-        Usuario usu = new Usuario();
-        usu.setNome(txtNome.getText());
-        usu.setEmail(txtEmail.getText());
-
-        String senha = new String(txtSenha.getPassword());
-        senha = Utils.calcularMD5(senha);
-        usu.setSenha(senha);
-        usu.setAtivo(ckbAtivo.isSelected());
-
-        Date data = Utils.converterStringToDate(txtDataNasc.getText());
-        usu.setDataNasc(data);
-
+    private void btnRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseClicked
         UsuarioController controller = new UsuarioController();
-        if (controller.adicionarUsuario(usu)) {
+        Usuario usu = new Usuario();
+        Long pk = Long.valueOf(txtCodigo.getText());
+        if(controller.removerUsuario(usu, pk)) {
             this.dispose();
         }
-    }//GEN-LAST:event_btnSalvar1MouseClicked
+    }//GEN-LAST:event_btnRemoverMouseClicked
 
-    private void btnSalvar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvar1KeyPressed
+    private void btnRemoverKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRemoverKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btnSalvarMouseClicked(null);
+            btnRemoverMouseClicked(null);
         }
-    }//GEN-LAST:event_btnSalvar1KeyPressed
+    }//GEN-LAST:event_btnRemoverKeyPressed
 
     private void btnAlterarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarSenhaMouseClicked
         if (btnAlterarSenha.getText().equals("Alterar Senha")) {
@@ -442,7 +427,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnAlterarSenhaMouseClicked
 
-    private boolean verificaCampos() {
+    private boolean verificarCampos() {
         if (txtNome.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Campo 'Nome' em branco");
             return false;
@@ -544,8 +529,8 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarSenha;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnRemover;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnSalvar1;
     private javax.swing.JCheckBox ckbAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
