@@ -31,6 +31,15 @@ public class UsuarioController {
         }
     }
     
+    public boolean alterarUsuario(Usuario u, Long pk){
+        if(usuarioDAO.alterarUsuario(u, pk)){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário não cadastrado");
+            return false;
+        }
+    }
+    
     public List<Usuario> readForDesc(int tipo, String desc){
         return usuarioDAO.readForDesc(tipo, desc);
     }

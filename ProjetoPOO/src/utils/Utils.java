@@ -34,7 +34,7 @@ public class Utils {
         return hashMD5;
     }
 
-    public static Date converterStingToDate(String texto) {
+    public static Date converterStringToDate(String texto) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date data = null;
 

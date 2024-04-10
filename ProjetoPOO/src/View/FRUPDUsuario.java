@@ -329,22 +329,49 @@ public class FRUPDUsuario extends javax.swing.JDialog {
             return;
         }
         //Salvar no banco de dados
-
         Usuario usu = new Usuario();
-        usu.setNome(txtNome.getText());
-        usu.setEmail(txtEmail.getText());
+        Long pk = Long.valueOf(txtCodigo.getText());
+        String nome = txtNome.getText();
+        String email = txtEmail.getText();
+        String senha = "";
+        boolean ativo = ckbAtivo.isSelected();
+        Date dataDb = usu.getDataNasc();
+        
+        if (!nome.equals(txtNome.getText())) {
+            usu.setNome(nome);
+        } else {
+            usu.setNome(txtNome.getText());
+        }
+        
+        if (!email.equals(txtEmail.getText())) {
+            usu.setEmail(email);
+        } else {
+            usu.setEmail(txtEmail.getText());
+        }
 
-        String senha = new String(txtSenha.getPassword());
-        senha = Utils.calcularMD5(senha);
+        if (txtSenha.isEditable()) {
+            senha = new String(txtSenha.getPassword());
+            senha = Utils.calcularMD5(senha);
+        } else {
+            senha = new String(txtSenha.getPassword());
+        }
         usu.setSenha(senha);
-        usu.setAtivo(ckbAtivo.isSelected());
 
-        Date data = Utils.converterStingToDate(
-                txtDataNasc.getText());
-        usu.setDataNasc(data);
+        if (ativo !=ckbAtivo.isSelected()) {
+            usu.setAtivo(ativo);
+        } else {
+            usu.setAtivo(ckbAtivo.isSelected());
+        }
+
+        Date data = Utils.converterStringToDate(txtDataNasc.getText());
+        if(dataDb != data){
+            usu.setDataNasc(data);
+        }else{
+            usu.setDataNasc(dataDb);
+        }
 
         UsuarioController controller = new UsuarioController();
-        if (controller.adicionarUsuario(usu)) {
+        if (controller.alterarUsuario(usu, pk)) {
             this.dispose();
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
@@ -366,11 +393,33 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_txtConfSenhaKeyPressed
 
     private void btnSalvar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvar1MouseClicked
-        // TODO add your handling code here:
+        if (verificaCampos() == false) {
+            return;
+        }
+
+        // Salvar no banco de dados
+        Usuario usu = new Usuario();
+        usu.setNome(txtNome.getText());
+        usu.setEmail(txtEmail.getText());
+
+        String senha = new String(txtSenha.getPassword());
+        senha = Utils.calcularMD5(senha);
+        usu.setSenha(senha);
+        usu.setAtivo(ckbAtivo.isSelected());
+
+        Date data = Utils.converterStringToDate(txtDataNasc.getText());
+        usu.setDataNasc(data);
+
+        UsuarioController controller = new UsuarioController();
+        if (controller.adicionarUsuario(usu)) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnSalvar1MouseClicked
 
     private void btnSalvar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSalvar1KeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnSalvarMouseClicked(null);
+        }
     }//GEN-LAST:event_btnSalvar1KeyPressed
 
     private void btnAlterarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarSenhaMouseClicked
@@ -409,7 +458,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
             return false;
         }
 
-        if (!txtEmail.getText().matches("^[a-zA-Z._]+@[a-zA-Z._]+.[a-zA-Z._]+$")) {
+        if (!txtEmail.getText().matches("^[a-zA-Z0-9._]+@[a-zA-Z._]+.[a-zA-Z._]+$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Email' possui formato inválido");
             return false;
         }
