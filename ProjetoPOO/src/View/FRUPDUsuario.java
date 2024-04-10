@@ -180,7 +180,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
         txtCodigo.setBackground(new java.awt.Color(204, 204, 204));
 
         btnAlterarSenha.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        btnAlterarSenha.setText("Altera Senha");
+        btnAlterarSenha.setText("Alterar Senha");
         btnAlterarSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAlterarSenhaMouseClicked(evt);
