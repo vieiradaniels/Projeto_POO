@@ -255,7 +255,7 @@ public class FRCadUsuario extends javax.swing.JDialog {
         usu.setSenha(senha);
         usu.setAtivo(ckbAtivo.isSelected());
 
-        Date data = Utils.converterStingToDate(
+        Date data = Utils.converterStringToDate(
                 txtDataNasc.getText());
         usu.setDataNasc(data);
         
@@ -323,7 +323,7 @@ public class FRCadUsuario extends javax.swing.JDialog {
             return false;
         }
 
-        if (!txtEmail.getText().matches("^[a-zA-Z._]+@[a-zA-Z._]+.[a-zA-Z._]+$")) {
+        if (!txtEmail.getText().matches("^[a-zA-Z0-9._]+@[a-zA-Z._]+.[a-zA-Z._]+$")) {
             JOptionPane.showMessageDialog(null, "Campo 'Email' possui formato inválido");
             return false;
         }

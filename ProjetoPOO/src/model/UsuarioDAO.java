@@ -63,6 +63,34 @@ public class UsuarioDAO {
         }
         return false;
     }
+    
+    public boolean alterarUsuario(Usuario u, Long pk) {
+        String sql = "UPDATE TBUSUARIO SET nome = ?, email = ?, senha = ?, dataNasc = ?, ativo = ? WHERE pkusuario = ?";
+
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, u.getNome());
+            stmt.setString(2, u.getEmail());
+            stmt.setString(3, u.getSenha());
+            stmt.setDate(4, new java.sql.Date(u.getDataNasc().getTime()));
+            stmt.setBoolean(5, u.isAtivo());
+            stmt.setLong(6, pk);
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null,
+                    "Usuário: " + u.getNome() + " inserido com sucesso!");
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,
+                    "ERRO: " + e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt);
+        }
+        return false;
+    }
 
     public List<Usuario> readForDesc(int tipo, String desc) {
         String sql = "SELECT * FROM tbusuario";
