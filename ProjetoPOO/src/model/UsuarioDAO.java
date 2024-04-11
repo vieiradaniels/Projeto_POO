@@ -92,7 +92,7 @@ public class UsuarioDAO {
         return false;
     }
     
-    public boolean removerUsuario(Usuario u, Long pk) {
+    public boolean removerUsuario(int pkUsuario) {
         String sql = "DELETE FROM TBUSUARIO WHERE pkusuario = ?";
 
         GerenciadorConexao gerenciador = new GerenciadorConexao();
@@ -101,12 +101,12 @@ public class UsuarioDAO {
 
         try {
             stmt = con.prepareStatement(sql);         
-            stmt.setLong(1, pk);
+            stmt.setLong(1, pkUsuario);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usuario removido com sucesso!");
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao excluir: " + e.getMessage());
         } finally {
             gerenciador.closeConnection(stmt);
         }
