@@ -36,6 +36,7 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     public FRUPDUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -393,11 +394,15 @@ public class FRUPDUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_txtConfSenhaKeyPressed
 
     private void btnRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemoverMouseClicked
-        UsuarioController controller = new UsuarioController();
-        Usuario usu = new Usuario();
-        Long pk = Long.valueOf(txtCodigo.getText());
-        if(controller.removerUsuario(usu, pk)) {
-            this.dispose();
+        int resposta = JOptionPane.showConfirmDialog(null,
+                "Deseja excluir o usuário?",
+                "Confirmação", JOptionPane.YES_NO_OPTION);
+        
+        if(resposta == JOptionPane.YES_NO_OPTION){
+            UsuarioController controller = new UsuarioController();
+            if(controller.removerUsuario(pkUsuario)){
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_btnRemoverMouseClicked
 

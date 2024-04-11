@@ -15,6 +15,8 @@ public class FRMenu extends javax.swing.JFrame {
      */
     public FRMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        //this.setExtendedState(6);
     }
 
     /**
@@ -36,6 +38,8 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         MIConUsuario = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        MISobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
@@ -49,14 +53,14 @@ public class FRMenu extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
+                .addContainerGap(129, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -99,6 +103,18 @@ public class FRMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Ajuda");
+
+        MISobre.setText("Sobre");
+        MISobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MISobreActionPerformed(evt);
+            }
+        });
+        jMenu3.add(MISobre);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,8 +122,8 @@ public class FRMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,6 +144,10 @@ public class FRMenu extends javax.swing.JFrame {
     private void MIConUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIConUsuarioActionPerformed
         new FRConsUsuario(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_MIConUsuarioActionPerformed
+
+    private void MISobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MISobreActionPerformed
+        new FRSobre(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_MISobreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,9 +188,11 @@ public class FRMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem MICadUsuario;
     private javax.swing.JMenuItem MIConUsuario;
     private javax.swing.JMenuItem MISair;
+    private javax.swing.JMenuItem MISobre;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;

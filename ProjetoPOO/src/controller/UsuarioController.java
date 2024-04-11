@@ -40,11 +40,11 @@ public class UsuarioController {
         }
     }
     
-    public boolean removerUsuario(Usuario u, Long pk) {
-        if (usuarioDAO.removerUsuario(u, pk)){
+    public boolean removerUsuario(int pkUsuario) {
+        if (usuarioDAO.removerUsuario(pkUsuario)){
             return true;
         } else {
-            JOptionPane.showMessageDialog(null,"Usuario não cadastrado");
+            JOptionPane.showMessageDialog(null,"Usuario não removido");
             return false;
         }
     }
