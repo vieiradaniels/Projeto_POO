@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import javax.swing.Icon;
 
 public class Usuario {
    private long pkUsuario;
@@ -9,6 +10,15 @@ public class Usuario {
    private String senha;
    private Date dataNasc;
    private boolean ativo;
+   private Icon imagem;
+
+    public Icon getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(Icon imagem) {
+        this.imagem = imagem;
+    }
 
     public Usuario() {
     };
